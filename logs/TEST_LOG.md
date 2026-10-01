@@ -52,6 +52,19 @@ Result: PASS (contract validated)
 
 ---
 
+## TEST-021 — Voice pipeline
+
+Device: Ubuntu development workstation
+Command:
+```bash
+python3 scripts/test_voice.py
+```
+Expected: A fake STT, LLM, and TTS chain should complete the full conversation path while changing face states in sequence.
+Actual: PASS
+Result: PASS
+
+---
+
 ## TEST-010 — Camera hardware
 
 Device: POCO X3 / Android Termux required

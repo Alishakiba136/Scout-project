@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3
+- Added the M3 voice conversation pipeline: microphone/STT → brain → TTS → speaker, with face-state transitions.
+- Added the voice-session orchestrator and a developer-facing voice test script.
+- Kept all voice behavior modular and isolated behind the brain-level interface.
+
 ## 0.1.2
 - Added the M2 local-LLM integration layer using a llama.cpp-compatible HTTP client interface.
 - Added the brain-level LLM contract and a local model test script.

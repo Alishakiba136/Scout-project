@@ -74,3 +74,14 @@ Decision: Use a single llama.cpp-compatible client behind the `scout.brain.llm` 
 Reason: The LLM should be an active cognitive component but must remain modular, testable, and configurable without coupling the rest of the system to one inference server implementation.
 Alternatives considered: Direct requests from multiple modules and an unbounded HTTP client spread across the codebase.
 Consequences: The model integration stays clean, configurable, and easy to replace if a newer local inference stack is introduced later.
+
+---
+
+## Decision D008 — Voice loop uses explicit face-state transitions
+
+Date: 2026-10-01
+Status: Accepted
+Decision: The voice pipeline must explicitly move through listening → thinking → speaking → idle states before returning to baseline.
+Reason: This makes the robot feel coherent and helps future UI and hardware debugging without hard-coding emotion into the LLM response logic.
+Alternatives considered: A silent internal pipeline with no visible state change.
+Consequences: All future conversation code can rely on a consistent state machine, which keeps the product readable and easier to debug.

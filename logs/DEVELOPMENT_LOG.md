@@ -143,3 +143,32 @@ The local llama.cpp server is not running on this workstation, so the live model
 
 ### Next step
 When the local model server is started, run the LLM script again and then proceed to the next milestone only after confirming the endpoint responds.
+
+---
+
+## 2026-10-01 — Step 06 — M3 voice conversation pipeline
+
+### Goal
+Implement the direct microphone-to-transcription-to-LLM-to-speech loop with face-state transitions that matches the SCOUT product spec.
+
+### Changes
+- Added `scout/brain/voice.py` with the `VoicePipeline` orchestrator.
+- Exported the new pipeline in `scout/brain/__init__.py`.
+- Added `scripts/test_voice.py` to exercise the conversation flow on a desktop workstation without hardware access.
+- Added `tests/test_voice_pipeline.py` for the core contract.
+
+### Why
+M3 is the first full conversation loop and must remain modular so that real device hardware can be plugged in behind the same interfaces.
+
+### Testing
+- `python3 -m pytest -q`
+- `python3 scripts/test_voice.py`
+
+### Result
+PASS
+
+### Problems
+No code-level blockers. Actual microphone and speaker hardware remains untested here because the POCO X3 runtime is not present.
+
+### Next step
+Proceed only after the hardware target is ready for real device validation of the full voice path.
