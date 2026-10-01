@@ -26,6 +26,19 @@ Result: PASS
 
 ---
 
+## TEST-015 — Face expression demo
+
+Device: Ubuntu development workstation
+Command:
+```bash
+python3 scripts/test_face.py
+```
+Expected: All face states cycle successfully.
+Actual: PASS
+Result: PASS
+
+---
+
 ## TEST-010 — Camera hardware
 
 Device: POCO X3 / Android Termux required

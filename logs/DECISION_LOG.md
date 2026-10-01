@@ -52,3 +52,14 @@ Decision: M0 focuses on repository bootstrap, docs, configuration, tests, and di
 Reason: The specification explicitly requires a staged approach and forbids jumping ahead to M1 or M2 before M0 is complete and validated.
 Alternatives considered: Implementing camera, TTS, and LLM prototypes prematurely.
 Consequences: The project remains disciplined and aligned with the milestone plan, which reduces rework and keeps M0 deliverables clear.
+
+---
+
+## Decision D006 — Device-aware hardware abstractions for M1
+
+Date: 2026-10-01
+Status: Accepted
+Decision: Each physical capability receives a module-level interface with a Termux-aware implementation and a conservative development-mode fallback.
+Reason: This allows the project to test well on desktop machines while still supporting the actual POCO X3 runtime later without hard-coding device-specific logic into the rest of the system.
+Alternatives considered: Hard-coded shell calls across the app and a non-portable monolithic M1 implementation.
+Consequences: The architecture remains modular and stays aligned with the future requirement to swap providers behind stable interfaces.
