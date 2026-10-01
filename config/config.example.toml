@@ -1,0 +1,28 @@
+[project]
+name = "scout"
+mode = "development"
+
+[paths]
+model_dir = "./models"
+image_dir = "./tmp/images"
+audio_dir = "./tmp/audio"
+database_path = "./scout.db"
+
+[llm]
+provider = "llama.cpp"
+server_url = "http://127.0.0.1:8080"
+model_name = "SmolLM2-360M-Instruct"
+
+[camera]
+camera_id = 0
+resolution = "1280x720"
+
+[audio]
+language = "en-US"
+
+[logging]
+level = "INFO"
+
+[privacy]
+local_only = true
+no_cloud_storage = true
