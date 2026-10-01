@@ -63,3 +63,14 @@ Decision: Each physical capability receives a module-level interface with a Term
 Reason: This allows the project to test well on desktop machines while still supporting the actual POCO X3 runtime later without hard-coding device-specific logic into the rest of the system.
 Alternatives considered: Hard-coded shell calls across the app and a non-portable monolithic M1 implementation.
 Consequences: The architecture remains modular and stays aligned with the future requirement to swap providers behind stable interfaces.
+
+---
+
+## Decision D007 — Local LLM interface isolated behind a single adapter
+
+Date: 2026-10-01
+Status: Accepted
+Decision: Use a single llama.cpp-compatible client behind the `scout.brain.llm` interface rather than scattering HTTP calls throughout the project.
+Reason: The LLM should be an active cognitive component but must remain modular, testable, and configurable without coupling the rest of the system to one inference server implementation.
+Alternatives considered: Direct requests from multiple modules and an unbounded HTTP client spread across the codebase.
+Consequences: The model integration stays clean, configurable, and easy to replace if a newer local inference stack is introduced later.

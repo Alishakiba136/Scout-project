@@ -115,3 +115,31 @@ The development workstation is not a POCO X3 / Android Termux environment, so th
 
 ### Next step
 Prepare the M1 commit and then move to the next milestone only after validating the environment-specific hardware target.
+
+---
+
+## 2026-10-01 — Step 05 — M2 local LLM interface
+
+### Goal
+Create the isolated local LLM adapter for llama.cpp so the model layer remains behind a clean interface and is not scattered through the application.
+
+### Changes
+- Added `scout/brain/llm.py` with a generic `LLMClient` and a `LlamaCppClient` implementation.
+- Exported the client from `scout/brain/__init__.py`.
+- Added `scripts/test_llm.py` and `tests/test_llm.py` for contract and integration validation.
+
+### Why
+The LLM should be isolated behind a single interface and should not be embedded into the rest of the application.
+
+### Testing
+- `python3 -m pytest -q`
+- `python3 scripts/test_llm.py`
+
+### Result
+PASS
+
+### Problems
+The local llama.cpp server is not running on this workstation, so the live model request remains NOT TESTED. The script reports the expected logical status instead of pretending the server is available.
+
+### Next step
+When the local model server is started, run the LLM script again and then proceed to the next milestone only after confirming the endpoint responds.

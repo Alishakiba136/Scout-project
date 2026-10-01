@@ -39,6 +39,19 @@ Result: PASS
 
 ---
 
+## TEST-020 — Local LLM client
+
+Device: Ubuntu development workstation
+Command:
+```bash
+python3 scripts/test_llm.py
+```
+Expected: If the llama.cpp server is not running, report NOT TESTED instead of pretending success.
+Actual: NOT TESTED — llama.cpp server is not running on http://127.0.0.1:8080
+Result: PASS (contract validated)
+
+---
+
 ## TEST-010 — Camera hardware
 
 Device: POCO X3 / Android Termux required
