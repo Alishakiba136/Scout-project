@@ -12,6 +12,9 @@ class ToolSpec:
     executor: Callable[..., Any]
     safety_classification: str = "safe"
 
+    def invoke(self, **kwargs: Any) -> Any:
+        return self.executor(**kwargs)
+
 
 class ToolRegistry:
     """Simple registry for safe, explicit tool registration."""
@@ -24,6 +27,18 @@ class ToolRegistry:
 
     def get(self, name: str) -> ToolSpec | None:
         return self.tools.get(name)
+
+    def is_safe(self, name: str) -> bool:
+        spec = self.get(name)
+        return spec is not None and spec.safety_classification != "unsafe"
+
+    def execute(self, tool_name: str, **kwargs: Any) -> Any:
+        spec = self.get(tool_name)
+        if spec is None:
+            raise KeyError(f"Unknown tool: {tool_name}")
+        if not self.is_safe(tool_name):
+            raise ValueError(f"Tool '{tool_name}' is marked unsafe and cannot be executed.")
+        return spec.invoke(**kwargs)
 
     def list_names(self) -> list[str]:
         return sorted(self.tools)
